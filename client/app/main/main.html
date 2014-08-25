@@ -1,0 +1,57 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>搭伙</h1>
+    <p class="lead">寻找身边的家常美食</p>
+    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+  </div>
+</header>
+
+<div class="container">
+  <form class="search-form">
+    <p class="input-group ">
+      <input type="text" class="form-control"
+      placeholder="菜肴 地点" ng-model="search">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addThing()">
+          查找
+        </button>
+      </span>
+    </p>
+  </form>
+
+  <div class="main thumbnail">
+    <div class="sample-image" style="background-image:url(http://lorempixel.com/600/300/food/)" >
+
+    </div>
+    <p>
+      <div class="avatar" style="background-image:url(http://cage.qiniudn.com/26KEo5imkA/avatar.jpeg)">
+      </div>
+      <h5 class="title">
+        Young 的私房菜
+        <small class="eats">12 人吃过</small>
+        <small class="votes">4 人喜欢</small>
+      </h5>
+    </p>
+    <div class="description">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Quibusdam harum tenetur.
+    </div>
+    <div class="actions text-center">
+      <div class="start-time"><i class="fa fa-clock-o"></i>19:00</div>
+      <div class="location"><i class="fa fa-map-marker"></i>1.3公里</div>
+      <div class="vote"><i class="fa fa-heart"></i></div>
+      <div class="join">我要吃</div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p><a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+     <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+   </div>
+ </footer>

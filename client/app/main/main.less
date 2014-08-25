@@ -1,0 +1,81 @@
+.thing-form {
+  margin: 20px 0;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-unit {
+  position: relative;
+  padding: 30px 15px;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.main{
+  &.thumbnail{
+    .sample-image{
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      @media (max-width:480px) {
+        height: 250px;
+      }
+
+      @media (max-width:360px) {
+        height: 150px;
+      }
+    }
+    .title{
+      display: inline-block;
+      vertical-align: top;
+    }
+    .actions{
+      font-size: 0;
+      margin: -4px;
+      margin-top: 4px;
+      border-radius: 0 0 3px 3px;
+      border-top: 1px solid #dddddd;
+      &> div{
+        border-right:1px solid #dddddd;
+        display: inline-block;
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        &:nth-last-child(1){
+          border-right:none;
+        }
+      }
+      .start-time{
+        width: 30%;
+      }
+      .location{
+        width: 30%;
+      }
+      .vote{
+        width: 10%;
+      }
+      .join{
+        width: 30%;
+      }
+    }
+  }
+}

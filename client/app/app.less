@@ -1,0 +1,43 @@
+@import 'bootstrap/less/bootstrap.less';
+@import 'font-awesome/less/font-awesome.less';
+
+@icon-font-path: '/bower_components/bootstrap/fonts/';
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+/**
+ * App-wide Styles
+ */
+
+ .browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+.avatar{
+  position: relative;
+  background-color: #e7dfcd;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  display: inline-block;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100%;
+}
+
+// injector
+@import 'account/login/login.less';
+@import 'admin/admin.less';
+@import 'chief/chief.less';
+@import 'main/main.less';
+// endinjector
