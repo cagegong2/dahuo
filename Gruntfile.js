@@ -88,6 +88,12 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:coffee', 'injector:scripts']
       },
+      coffeeServer: {
+        files: [
+          'server/{*,*/*,*/*/*}.{coffee,litcoffee,coffee.md}'
+        ],
+        tasks: ['coffee:server']
+      },
       coffeeTest: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.spec.{coffee,litcoffee,coffee.md}'
@@ -445,7 +451,7 @@ module.exports = function (grunt) {
         sourceMap: true,
         sourceRoot: ''
       },
-      server: {
+      client: {
         files: [{
           expand: true,
           cwd: 'client',
@@ -455,6 +461,19 @@ module.exports = function (grunt) {
           ],
           dest: '.tmp',
           ext: '.js'
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: 'server',
+          src: [
+            '{*,*/*,*/*/*}.{coffee,litcoffee,coffee.md}'
+          ],
+          dest: 'server',
+          rename: function (dest, src) {
+            return dest + '/' + src.replace(/\.coffee$/, '.js');
+          }
         }]
       }
     },
@@ -564,7 +583,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:less', 
+        'injector:less',
         'concurrent:server',
         'injector',
         'bowerInstall',
@@ -576,7 +595,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:less', 
+      'injector:less',
       'concurrent:server',
       'injector',
       'bowerInstall',
@@ -606,7 +625,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:less', 
+        'injector:less',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -619,7 +638,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:less', 
+        'injector:less',
         'concurrent:test',
         'injector',
         'bowerInstall',
@@ -637,7 +656,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:less', 
+    'injector:less',
     'concurrent:dist',
     'injector',
     'bowerInstall',
