@@ -1,49 +1,76 @@
-/**
- * Populate DB with sample data on server start
- * to disable, edit config/environment/index.js, and set `seedDB: false`
+
+/*
+  * * Populate DB with sample data on server start
+  * * to disable, edit config/environment/index.js, and set `seedDB: false`
  */
 
-'use strict';
+(function() {
+  'use strict';
+  var Dish, Eatery, Q, User, config, mongoose;
 
-var Thing = require('../api/thing/thing.model');
-var User = require('../api/user/user.model');
+  process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-Thing.find({}).remove(function() {
-  Thing.create({
-    name : 'Development Tools',
-    info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Sass, CoffeeScript, and Less.'
-  }, {
-    name : 'Server and Client integration',
-    info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
-  }, {
-    name : 'Smart Build System',
-    info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
-  },  {
-    name : 'Modular Structure',
-    info : 'Best practice client and server structures allow for more code reusability and maximum scalability'
-  },  {
-    name : 'Optimized Build',
-    info : 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
-  },{
-    name : 'Deployment Ready',
-    info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
-  });
-});
+  User = require('../api/user/user.model');
 
-User.find({}).remove(function() {
-  User.create({
-    provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'test'
-  }, {
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, function() {
-      console.log('finished populating users');
+  Eatery = require('../api/eatery/eatery.model');
+
+  Dish = require('../api/dish/dish.model');
+
+  Q = mongoose = require('mongoose');
+
+  config = require('../config/environment');
+
+  mongoose.connect(config.mongo.uri, config.mongo.options);
+
+  Dish.removeQ().then(function() {
+    return Eatery.removeQ();
+  }).then(function() {
+    var constructEatery, index, _i, _results;
+    constructEatery = function(name, info, background) {
+      return {
+        name: name,
+        info: info,
+        background: background
+      };
+    };
+    _results = [];
+    for (index = _i = 1; _i <= 10; index = ++_i) {
+      _results.push(Eatery.createQ(constructEatery("young的私房菜" + index, "young的私房菜" + index)));
     }
-  );
-});
+    return _results;
+  }).then(function(results) {
+    return Q.all(results);
+  }).then(function(results) {
+    var item, _i, _len, _results;
+    console.dir(results[0]);
+    _results = [];
+    for (_i = 0, _len = results.length; _i < _len; _i++) {
+      item = results[_i];
+      _results.push(Dish.createQ({
+        name: "红烧肉" + item._id,
+        info: "红烧肉" + item._id
+      }));
+    }
+    return _results;
+  }).then(function() {
+    return User.removeQ();
+  }).then(function() {
+    return User.create({
+      provider: 'local',
+      name: 'Test User',
+      email: 'test@test.com',
+      password: 'test'
+    }, {
+      provider: 'local',
+      role: 'admin',
+      name: 'Admin',
+      email: 'admin@admin.com',
+      password: 'admin'
+    }, function() {
+      return console.log('finished populating users');
+    });
+  });
+
+}).call(this);
+
+//# sourceMappingURL=seed.js.map

@@ -30,7 +30,7 @@
 }
 
 .main{
-  &.thumbnail{
+  .thumbnail{
     .sample-image{
       width: 100%;
       background-size: cover;
@@ -39,20 +39,16 @@
       @media (max-width:480px) {
         height: 250px;
       }
-
       @media (max-width:360px) {
         height: 150px;
       }
     }
     .title{
-      display: inline-block;
       vertical-align: top;
     }
     .actions{
       font-size: 0;
-      margin: -4px;
       margin-top: 4px;
-      border-radius: 0 0 3px 3px;
       border-top: 1px solid #dddddd;
       &> div{
         border-right:1px solid #dddddd;

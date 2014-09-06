@@ -1,0 +1,24 @@
+//== border radius
+//
+//## 0
+@border-radius-base:          0;
+@border-radius-large:         0;
+@border-radius-small:         0;
+
+
+//== Thumbnails
+//
+//## transition
+@thumbnail-padding:           0;
+
+.overflow-hidden {
+  overflow: hidden;
+}
+.thumbnail {
+  .transition(all .2s ease-in-out);
+  .box-shadow(0 0px 8px #ddd);
+  &:hover{
+    .box-shadow(0 2px 8px 4px  #ddd);
+    .translate3d(0, -5px, 0);
+  }
+}

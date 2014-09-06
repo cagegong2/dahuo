@@ -2,17 +2,16 @@
 
 'use strict'
 
-Eatery = require('./eatery.model')
+Dish = require('./dish.model')
 
 exports.register = (socket) ->
-  # console.log socket
-  Eatery.schema.post 'save',  (doc) ->
+  Dish.schema.post 'save',  (doc) ->
     onSave(socket, doc)
-  Eatery.schema.post 'remove',  (doc) ->
+  Dish.schema.post 'remove',  (doc) ->
     onRemove(socket, doc)
 
 onSave = (socket, doc, cb) ->
-  socket.emit('eatery:save', doc)
+  socket.emit('dish:save', doc)
 
 onRemove = (socket, doc, cb) ->
-  socket.emit('eatery:remove', doc)
+  socket.emit('dish:remove', doc)

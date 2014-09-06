@@ -1,32 +1,30 @@
 (function() {
   'use strict';
-  var Eatery, _;
+  var Dish, _;
 
   _ = require('lodash');
 
-  Eatery = require('./eatery.model');
+  Dish = require('./dish.model');
 
   exports.index = function(req, res, next) {
-    return Eatery.findQ().then(function(eaterys) {
-      return res.json(200, eaterys);
+    return Dish.findQ().then(function(dishs) {
+      return res.json(200, dishs);
     }, function(err) {
       return next(err);
     });
   };
 
   exports.show = function(req, res, next) {
-    return Eatery.findByIdQ(req.params.id).then(function(eatery) {
-      return eatery.populateQ('dishes', '_id name info');
-    }).then(function(eatery) {
-      return res.json(eatery);
+    return Dish.findByIdQ(req.params.id).then(function(dish) {
+      return res.json(dish);
     }, function(err) {
       return next(err);
     });
   };
 
   exports.create = function(req, res, next) {
-    return Eatery.createQ(req.body).then(function(eatery) {
-      return res.json(201, eatery);
+    return Dish.createQ(req.body).then(function(dish) {
+      return res.json(201, dish);
     }, function(err) {
       return next(err);
     });
@@ -36,11 +34,11 @@
     if (req.body._id) {
       delete req.body._id;
     }
-    return Eatery.findByIdQ(req.params.id).then(function(eatery) {
+    return Dish.findByIdQ(req.params.id).then(function(dish) {
       var updated;
-      updated = _.merge(eatery, req.body);
+      updated = _.merge(dish, req.body);
       return updated.saveQ().then(function() {
-        return res.json(200, eatery);
+        return res.json(200, dish);
       }, function(err) {
         return next(err);
       });
@@ -50,8 +48,8 @@
   };
 
   exports.destroy = function(req, res, next) {
-    return Eatery.findByIdQ(req.params.id).then(function(eatery) {
-      return eatery.removeQ();
+    return Dish.findByIdQ(req.params.id).then(function(dish) {
+      return dish.removeQ();
     }, function(err) {
       return next(err);
     }).then(function() {
@@ -63,4 +61,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=eatery.controller.js.map
+//# sourceMappingURL=dish.controller.js.map

@@ -12,6 +12,7 @@ function onDisconnect(socket) {
 
 // When the user connects.. perform this
 function onConnect(socket) {
+  console.log(socket)
   // When the client emits 'info', this listens and executes
   socket.on('info', function (data) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
@@ -19,7 +20,6 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/eatery/eatery.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
 }
 
 module.exports = function (socketio) {

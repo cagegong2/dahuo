@@ -14,6 +14,8 @@ exports.index = (req, res, next) ->
 exports.show = (req, res, next) ->
   Eatery.findByIdQ req.params.id
   .then (eatery) ->
+    eatery.populateQ 'dishes', '_id name info'
+  .then (eatery) ->
     res.json(eatery)
   , (err)->
     next err

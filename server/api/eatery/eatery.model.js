@@ -9,7 +9,13 @@
   EaterySchema = new Schema({
     name: String,
     info: String,
-    active: Boolean
+    background: String,
+    dishes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "dish"
+      }
+    ]
   });
 
   module.exports = mongoose.model('Eatery', EaterySchema);

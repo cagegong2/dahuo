@@ -20,33 +20,34 @@
       </span>
     </p>
   </form>
-
-  <div class="main thumbnail">
-    <div class="sample-image" style="background-image:url(http://lorempixel.com/600/300/food/)" >
-
-    </div>
-    <p>
-      <div class="avatar" style="background-image:url(http://cage.qiniudn.com/26KEo5imkA/avatar.jpeg)">
+  <div class="main row">
+    <div class="col-md-6" ng-repeat="index in [1,2,3,4,5,6,7,8]">
+      <div class="thumbnail" >
+        <div class="sample-image" style="background-image:url(http://lorempixel.com/600/300/food/)" >
+        </div>
+        <div class="caption">
+          <h5 class="title">
+            Young 的私房菜
+            <small class="pull-right">
+              <small class="eats">12 人吃过</small>
+              <small class="votes">4 人喜欢</small>
+            </small>
+          </h5>
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Quibusdam harum tenetur.
+          </div>
+        </div>
+        <div class="actions text-center">
+          <div class="start-time"><i class="fa fa-clock-o"></i>19:00</div>
+          <div class="location"><i class="fa fa-map-marker"></i>1.3公里</div>
+          <div class="vote"><i class="fa fa-heart"></i></div>
+          <div class="join">我要吃</div>
+        </div>
       </div>
-      <h5 class="title">
-        Young 的私房菜
-        <small class="eats">12 人吃过</small>
-        <small class="votes">4 人喜欢</small>
-      </h5>
-    </p>
-    <div class="description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Quibusdam harum tenetur.
-    </div>
-    <div class="actions text-center">
-      <div class="start-time"><i class="fa fa-clock-o"></i>19:00</div>
-      <div class="location"><i class="fa fa-map-marker"></i>1.3公里</div>
-      <div class="vote"><i class="fa fa-heart"></i></div>
-      <div class="join">我要吃</div>
     </div>
 
   </div>
-
 </div>
 
 <footer class="footer">
