@@ -7,7 +7,7 @@
   Eatery = require('./eatery.model');
 
   exports.index = function(req, res, next) {
-    return Eatery.findQ().then(function(eaterys) {
+    return Eatery.find().populate('postBy', '_id name avatar').execQ().then(function(eaterys) {
       return res.json(200, eaterys);
     }, function(err) {
       return next(err);
@@ -17,6 +17,8 @@
   exports.show = function(req, res, next) {
     return Eatery.findByIdQ(req.params.id).then(function(eatery) {
       return eatery.populateQ('dishes', '_id name info');
+    }).then(function(eatery) {
+      return eatery.populateQ('postBy', '_id profile');
     }).then(function(eatery) {
       return res.json(eatery);
     }, function(err) {

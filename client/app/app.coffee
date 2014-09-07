@@ -7,6 +7,9 @@ angular.module('dahuoApp', [
   'ui.bootstrap',
   'btford.socket-io',
   'ui.router'
+  'ui.ace'
+  'jsonFormatter'
+  'ngStorage'
 ])
   .config (($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
     $urlRouterProvider

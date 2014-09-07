@@ -14,6 +14,7 @@ UserSchema = new Schema
   role:
     type: String
     default: 'user'
+  avatar: String
   hashedPassword: String
   provider: String
   salt: String

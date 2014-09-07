@@ -5,7 +5,7 @@
 
 (function() {
   'use strict';
-  var app, config, exports, express, mongoose, server, socketio;
+  var app, config, cors, exports, express, mongoose, server, socketio;
 
   process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -15,9 +15,13 @@
 
   config = require('./config/environment');
 
+  cors = require('cors');
+
   mongoose.connect(config.mongo.uri, config.mongo.options);
 
   app = express();
+
+  app.use(cors());
 
   server = require('http').createServer(app);
 

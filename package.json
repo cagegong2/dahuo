@@ -25,7 +25,10 @@
     "composable-middleware": "^0.3.0",
     "connect-mongo": "^0.4.1",
     "socket.io": "~0.9.16",
-    "socketio-jwt": "^2.0.2"
+    "socketio-jwt": "^2.0.2",
+    "cors": "^2.4.1",
+    "underscore.string": "^2.3.3",
+    "qiniu": "^6.1.5"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

@@ -5,7 +5,10 @@ Eatery = require('./eatery.model')
 
 # Get list of eaterys
 exports.index = (req, res, next) ->
-  Eatery.findQ().then (eaterys) ->
+  Eatery.find()
+  .populate 'postBy', '_id name avatar'
+  .execQ()
+  .then (eaterys) ->
     res.json(200, eaterys)
   , (err)->
     next err
@@ -15,6 +18,8 @@ exports.show = (req, res, next) ->
   Eatery.findByIdQ req.params.id
   .then (eatery) ->
     eatery.populateQ 'dishes', '_id name info'
+  .then (eatery) ->
+    eatery.populateQ 'postBy', '_id profile'
   .then (eatery) ->
     res.json(eatery)
   , (err)->
