@@ -10,28 +10,26 @@ exports.index = (req, res, next) ->
   .execQ()
   .then (eaterys) ->
     res.json(200, eaterys)
-  , (err)->
-    next err
+  , next
 
 # Get a single eatery
 exports.show = (req, res, next) ->
   Eatery.findByIdQ req.params.id
+  .then (eatery)->
+    eatery.populateQ 'postBy', '_id name avatar'
+  .then (eatery)->
+    eatery.populateQ 'dishes'
   .then (eatery) ->
-    eatery.populateQ 'dishes', '_id name info'
-  .then (eatery) ->
-    eatery.populateQ 'postBy', '_id profile'
-  .then (eatery) ->
+    console.dir eatery
     res.json(eatery)
-  , (err)->
-    next err
+  , next
 
 # Creates a new eatery in the DB.
 exports.create = (req, res, next) ->
   Eatery.createQ req.body
   .then (eatery) ->
     res.json(201, eatery)
-  , (err)->
-    next err
+  , next
 
 
 # Updates an existing eatery in the DB.
@@ -44,18 +42,15 @@ exports.update = (req, res, next) ->
       res.json(200, eatery)
     , (err)->
       next err
-  , (err)->
-    next err
+  , next
 
 # Deletes a eatery from the DB.
 exports.destroy = (req, res, next) ->
   Eatery.findByIdQ req.params.id
   .then (eatery) ->
     eatery.removeQ()
-  , (err)->
-    next err
+  , next
   .then () ->
     res.send(204)
-  , (err)->
-    next err
+  , next
 

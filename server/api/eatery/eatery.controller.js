@@ -9,29 +9,24 @@
   exports.index = function(req, res, next) {
     return Eatery.find().populate('postBy', '_id name avatar').execQ().then(function(eaterys) {
       return res.json(200, eaterys);
-    }, function(err) {
-      return next(err);
-    });
+    }, next);
   };
 
   exports.show = function(req, res, next) {
     return Eatery.findByIdQ(req.params.id).then(function(eatery) {
-      return eatery.populateQ('dishes', '_id name info');
+      return eatery.populateQ('postBy', '_id name avatar');
     }).then(function(eatery) {
-      return eatery.populateQ('postBy', '_id profile');
+      return eatery.populateQ('dishes');
     }).then(function(eatery) {
+      console.dir(eatery);
       return res.json(eatery);
-    }, function(err) {
-      return next(err);
-    });
+    }, next);
   };
 
   exports.create = function(req, res, next) {
     return Eatery.createQ(req.body).then(function(eatery) {
       return res.json(201, eatery);
-    }, function(err) {
-      return next(err);
-    });
+    }, next);
   };
 
   exports.update = function(req, res, next) {
@@ -46,21 +41,15 @@
       }, function(err) {
         return next(err);
       });
-    }, function(err) {
-      return next(err);
-    });
+    }, next);
   };
 
   exports.destroy = function(req, res, next) {
     return Eatery.findByIdQ(req.params.id).then(function(eatery) {
       return eatery.removeQ();
-    }, function(err) {
-      return next(err);
-    }).then(function() {
+    }, next).then(function() {
       return res.send(204);
-    }, function(err) {
-      return next(err);
-    });
+    }, next);
   };
 
 }).call(this);

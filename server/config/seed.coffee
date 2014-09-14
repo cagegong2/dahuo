@@ -40,6 +40,7 @@ Dish.removeQ()
     _id: _s.sprintf dishId, index
     name: ["红烧肉","清蒸鱼","狮子头"][index % 3]
     info: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+    image: "http://lorempixel.com/320/320/food/#{index%10}"
   Dish.createQ(constructDish(index)) for index in [1..50]
 .then (results)->
   console.log 'finish dishes'

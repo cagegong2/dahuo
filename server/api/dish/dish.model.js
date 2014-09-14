@@ -8,7 +8,8 @@
 
   DishSchema = new Schema({
     name: String,
-    info: String
+    info: String,
+    image: String
   });
 
   module.exports = mongoose.model('Dish', DishSchema);
